@@ -18,7 +18,7 @@ class Api::ProductsController < ApplicationController
     @api_product = Product.new(api_product_params)
 
     if @api_product.save
-      render :show, status: :created, location: @api_product
+      render :show
     else
       render json: @api_product.errors, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::ProductsController < ApplicationController
   # PATCH/PUT /api/products/1.json
   def update
     if @api_product.update(api_product_params)
-      render :show, status: :ok, location: @api_product
+      render :show
     else
       render json: @api_product.errors, status: :unprocessable_entity
     end
@@ -48,6 +48,6 @@ class Api::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_product_params
-      params.require(:api_product).permit(:name, :description, :price, :department)
+      params.require(:product).permit(:name, :description, :price, :department)
     end
 end
